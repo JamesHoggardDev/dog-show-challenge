@@ -19,7 +19,6 @@ function runFetchAgain(){
     }
     mainTable.addEventListener('click', evt => {
         if(evt.target.matches('button')){
-           
             fetch(`http://localhost:3000/dogs/${evt.target.dataset.id}`)
                 .then(res => res.json())
                 .then(dogObj => {
@@ -27,17 +26,16 @@ function runFetchAgain(){
                     editForm.name.value = dogObj.name
                     editForm.breed.value = dogObj.breed
                     editForm.sex.value = dogObj.sex
-                })
-        }
-    })
+                });
+        };
+    });
 
 editForm.addEventListener('submit', evt => {
-    evt.preventDefault()
+    evt.preventDefault();
 
     let name =  editForm.name.value
     let breed = editForm.breed.value
     let sex =  editForm.sex.value
-
     fetch(`http://localhost:3000/dogs/${evt.target.dataset.id}`, {
         method: "PATCH",
         headers: {
